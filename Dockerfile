@@ -13,7 +13,7 @@ MAINTAINER robert.pesout@tietoevry.com
 RUN ./installUtility install collectiveController-1.0 collectiveMember-1.0 clusterMember-1.0 websocket-1.1 restConnector-2.0 ssl-1.0 localConnector-1.0 adminCenter-1.0 --acceptLicense 
 
 # Exponujte potřebné porty
-EXPOSE 9080 9443 80
+EXPOSE 9080 9443
 
 # Spusťte server
 CMD ["./server", "run"]
