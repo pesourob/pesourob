@@ -11,11 +11,11 @@ MAINTAINER robert.pesout@tietoevry.com
 
 # Nainstalujte požadované funkce
 RUN ./installUtility install collectiveController-1.0 collectiveMember-1.0 clusterMember-1.0 websocket-1.1 restConnector-2.0 ssl-1.0 localConnector-1.0 adminCenter-1.0 --acceptLicense && \
-./server create DMGR 
+
 #./collective create DMGR --keystorePassword=wasadmin --createConfigFile=/opt/ibm/wlp/usr/servers/DMGR/controller.xml 
 
 # Spusťte server
-CMD /opt/ibm/wlp/bin/server start DMGR && tail -f /logs/messages.log  
+CMD /opt/ibm/wlp/bin/server create DMGR && /opt/ibm/wlp/bin/server start DMGR  && tail -f /logs/messages.log  
 
 # Exponujte potřebné porty
 EXPOSE 9080 9443
