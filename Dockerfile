@@ -16,7 +16,7 @@ RUN ./installUtility install collectiveController-1.0 collectiveMember-1.0 clust
 #./collective create DMGR --keystorePassword=wasadmin --createConfigFile=/opt/ibm/wlp/usr/servers/DMGR/controller.xml 
 
 # Spusťte server
-CMD /opt/ibm/wlp/bin/server start defaultServer && /opt/ibm/wlp/bin/server start DMGR
+CMD /opt/ibm/wlp/bin/server start defaultServer 
 
 # Exponujte potřebné porty
 EXPOSE 9080 9443
