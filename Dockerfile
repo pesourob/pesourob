@@ -5,7 +5,6 @@ FROM websphere-liberty:latest
 WORKDIR /opt/ibm/wlp/bin
 
 MAINTAINER robert.pesout@tietoevry.com
-USER 1001
 
 # Zkopírujte soubor server.xml do kontejneru (pokud máte vlastní konfiguraci)
 #COPY server.xml /config/
