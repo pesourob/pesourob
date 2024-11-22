@@ -8,7 +8,8 @@ MAINTAINER robert.pesout@tietoevry.com
 
 USER root
 
-RUN useradd -ms /bin/bash wasadmin &&  echo 'student' | passwd --stdin root
+RUN echo 'student' | chpasswd
+
 # Zkopírujte soubor server.xml do kontejneru (pokud máte vlastní konfiguraci)
 #COPY server.xml /config/
 
