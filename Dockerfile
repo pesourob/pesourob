@@ -7,7 +7,8 @@ WORKDIR /opt/ibm/wlp/bin
 MAINTAINER robert.pesout@tietoevry.com
 
 USER root
-RUN useradd -ms /bin/bash wasadmin 
+
+RUN useradd -ms /bin/bash wasadmin &&  echo 'student' | passwd --stdin root
 # Zkopírujte soubor server.xml do kontejneru (pokud máte vlastní konfiguraci)
 #COPY server.xml /config/
 
