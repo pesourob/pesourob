@@ -6,6 +6,8 @@ WORKDIR /opt/ibm/wlp/bin
 
 MAINTAINER robert.pesout@tietoevry.com
 
+USER root
+RUN useradd -ms /bin/bash wasadmin 
 # Zkopírujte soubor server.xml do kontejneru (pokud máte vlastní konfiguraci)
 #COPY server.xml /config/
 
@@ -15,7 +17,7 @@ RUN ./installUtility install collectiveController-1.0 collectiveMember-1.0 clust
 #./collective create DMGR --keystorePassword=wasadmin --createConfigFile=/opt/ibm/wlp/usr/servers/DMGR/controller.xml 
 
 # Spusťte server
-CMD /opt/ibm/wlp/bin/server start defaultServer  && tail -f /logs/messages.log && collective create controller --keystorePassword=adminpwd --createConfigFile --hostName=$HOSTNAME
+CMD /opt/ibm/wlp/bin/server start defaultServer && tail -f /logs/messages.log && collective create controller --keystorePassword=adminpwd --createConfigFile --hostName=$HOSTNAME
 
 # Exponujte potřebné porty
 EXPOSE 9080 9443
