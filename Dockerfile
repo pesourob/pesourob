@@ -19,4 +19,4 @@ RUN ./installUtility install collectiveController-1.0 collectiveMember-1.0 clust
 EXPOSE 9080 9443
 
 # Spusťte server
-CMD /opt/ibm/wlp/bin/server start defaultServer ; /opt/ibm/wlp/bin/server start DMGR #; tail -f /opt/ibm/wlp/usr/servers/DMGR/logs/messages.log
+CMD /opt/ibm/wlp/bin/server start defaultServer && /opt/ibm/wlp/bin/server start DMGR #; tail -f /opt/ibm/wlp/usr/servers/DMGR/logs/messages.log
