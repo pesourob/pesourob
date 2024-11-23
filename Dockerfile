@@ -12,7 +12,9 @@ USER root
 #COPY server.xml /config/
 
 # Nainstalujte požadované funkce
-RUN ./installUtility install collectiveController-1.0 collectiveMember-1.0 clusterMember-1.0 websocket-1.1 restConnector-2.0 ssl-1.0 localConnector-1.0 adminCenter-1.0 --acceptLicense && su - wasadmin 
+RUN apt-get update && apt-get install -y vim unzip && apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    useradd -m -s /bin/bash -G sudo wasadmin  && \
+./installUtility install collectiveController-1.0 collectiveMember-1.0 clusterMember-1.0 websocket-1.1 restConnector-2.0 ssl-1.0 localConnector-1.0 adminCenter-1.0 --acceptLicense && su - wasadmin 
 
 #./collective create DMGR --keystorePassword=wasadmin --createConfigFile=/opt/ibm/wlp/usr/servers/DMGR/controller.xml 
 
