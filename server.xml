@@ -23,4 +23,6 @@
                  httpPort="9080"
                  httpsPort="9443" />
 
+   <include location="${server.config.dir}/collective-create-include.xml" />
+
 </server>
