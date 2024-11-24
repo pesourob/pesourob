@@ -12,7 +12,7 @@ USER root
 #COPY server.xml /config/
 
 # Nainstalujte požadované funkce
-RUN apt-get install -y vim && apt-get clean && rm -rf /var/lib/apt/lists/* \
+RUN #apt-get install -y vim && apt-get clean && rm -rf /var/lib/apt/lists/* \
     ./installUtility install collectiveController-1.0 collectiveMember-1.0 clusterMember-1.0 websocket-1.1 restConnector-2.0 ssl-1.0 localConnector-1.0 adminCenter-1.0 --acceptLicense \
     ./server create controller \
     && chmod -R g+rw /config \
