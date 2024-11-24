@@ -9,13 +9,16 @@ USER root
 WORKDIR /opt/ibm/wlp/bin
 
 COPY collective-create-include.xml /tmp
+COPY entrypoint.sh /scripts
 
 # Install vim and create the server
 RUN apt-get update && apt install -y vim && apt-get clean && rm -rf /var/lib/apt/lists/* && \
     ./server create controller && \
-    mkdir -p /scripts && \
     #./collective create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=$HOSTNAME && \
     cp -r /tmp/collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/ && \
+    chown -R 1001:0 /scripts && \
+    chmod -R g+rw /scripts && \
+    chmod -R u+rwx /scripts && \
     chmod -R g+rw /config && \
     chown -R 1001:0 /logs && \
     chmod -R g+rw /logs && \
@@ -33,10 +36,7 @@ COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 #CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log && collective create controller --keystorePassword=password123 --hostName=$HOSTNAME && sed -i "s/<variable name=\"defaultHostName\" value=\"[^\"]*\" \/>/<variable name=\"defaultHostName\" value=\"$HOSTNAME\" \/>/" /opt/ibm/wlp/usr/servers/controller/collective-create-include.xml
 
 # Start the server
-CMD /opt/ibm/wlp/bin/server start controller && \
-    tail -f /logs/messages.log && \
-    collective create controller --keystorePassword=password123 --hostName=$HOSTNAME && \
-    sed -i "s/<variable name=\"defaultHostName\" value=\"[^\"]*\" \/>/<variable name=\"defaultHostName\" value=\"$HOSTNAME\" \/>/" /opt/ibm/wlp/usr/servers/controller/collective-create-include.xml
+ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 # Expose necessary ports
 EXPOSE 9080 9443
