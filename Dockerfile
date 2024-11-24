@@ -12,14 +12,27 @@ USER root
 #COPY server.xml /config/
 
 # Nainstalujte požadované funkce
-RUN apt-get update && apt-get install -y vim unzip && apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    useradd -m -s /bin/bash -G sudo wasadmin  && \
-./installUtility install collectiveController-1.0 collectiveMember-1.0 clusterMember-1.0 websocket-1.1 restConnector-2.0 ssl-1.0 localConnector-1.0 adminCenter-1.0 --acceptLicense && su - wasadmin 
+RUN apt-get install -y vim && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    ./installUtility install collectiveController-1.0 collectiveMember-1.0 clusterMember-1.0 websocket-1.1 restConnector-2.0 ssl-1.0 localConnector-1.0 adminCenter-1.0 --acceptLicense \
+    ./server create controller \
+    && chmod -R g+rw /config \
+    && chown -R 1001:0 /logs \
+    && chmod -R g+rw /logs \
+    && chown -R 1001:0 /opt/ol/wlp/usr \
+    && chmod -R g+rw /opt/ol/wlp/usr \
+    && chown -R 1001:0 /opt/ol/wlp/output \
+    && chmod -R g+rw /opt/ol/wlp/output \
+    && chown -R 1001:0 /opt/ol/helpers \
+    && chmod -R g+rw /opt/ol/helpers \
+    && chown -R 1001:0 /opt/ol/fixes \
+    && chmod -R g+rwx /opt/ol/fixes \
+    && chown -R 1001:0 /etc/wlp \
+    && chmod -R g+rw /etc/wlp 
 
 #./collective create DMGR --keystorePassword=wasadmin --createConfigFile=/opt/ibm/wlp/usr/servers/DMGR/controller.xml 
-USER wasadmin
+
 # Spusťte server
-CMD /opt/ibm/wlp/bin/server start defaultServer && tail -f /logs/messages.log && collective create controller --keystorePassword=adminpwd --createConfigFile --hostName=$HOSTNAME
+CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log 
 
 # Exponujte potřebné porty
 EXPOSE 9080 9443
