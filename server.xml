@@ -1,25 +1,26 @@
 <server description="controller">
-
-    <!-- Enable features -->
-    <featureManager>
+    
+   <!-- Enable features -->
+   <featureManager>
       <feature>adminCenter-1.0</feature>
-      <feature>websocket-1.1</feature>
-      <feature>restConnector-1.0</feature>
-      <feature>localConnector-1.0</feature>
-    </featureManager>
+   </featureManager>
+    
+    <!-- Define an Administrator and non-Administrator -->
+   <basicRegistry id="basic">
+      <user name="admin" password="password123" />
+      <user name="nonadmin" password="nonadminpwd" />
+   </basicRegistry>
 
-    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
-    <httpEndpoint id="defaultHttpEndpoint"
-                  host="*"
-                  httpPort="9080"
-                  httpsPort="9443" />
- 
-    <remoteFileAccess>
-    <writeDir>${server.config.dir}</writeDir>
-    </remoteFileAccess>
+   <!-- Assign 'admin' to Administrator -->
+   <administrator-role>
+      <user>admin</user>
+   </administrator-role>
 
+   <keyStore id="defaultKeyStore" password="password123" />
 
-    <!-- Automatically expand WAR files and EAR files -->
-    <applicationManager autoExpand="true"/>
+   <httpEndpoint id="defaultHttpEndpoint"
+                 host="*"
+                 httpPort="9080"
+                 httpsPort="9443" />
 
 </server>
