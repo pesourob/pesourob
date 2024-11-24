@@ -38,3 +38,4 @@
     <!-- collective root signers keystore -->
     <keyStore id="collectiveRootKeys" password="{xor}Lz4sLCgwLTtubWw="
               location="${server.config.dir}/resources/collective/rootKeys.p12" />
+    </server>
