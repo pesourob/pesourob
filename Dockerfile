@@ -8,8 +8,6 @@ USER root
 # Set the working directory
 WORKDIR /opt/ibm/wlp/bin
 
-COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
-
 # Install vim and create the server
 RUN apt-get update && apt install -y vim && apt-get clean && rm -rf /var/lib/apt/lists/* && \
     ./server create controller && \
@@ -23,7 +21,7 @@ RUN apt-get update && apt install -y vim && apt-get clean && rm -rf /var/lib/apt
     chown -R 1001:0 /etc/wlp && \
     chmod -R g+rw /etc/wlp
     
-COPY server.xml /opt/ibm/wlp/usr/servers/controller/
+COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 
 # Start the server
 CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log
