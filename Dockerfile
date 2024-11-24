@@ -20,6 +20,8 @@ RUN apt-get update && apt install -y vim && apt-get clean && rm -rf /var/lib/apt
     chmod -R g+rw /opt/ibm/wlp/output && \
     chown -R 1001:0 /etc/wlp && \
     chmod -R g+rw /etc/wlp
+    
+COPY server.xml /opt/ibm/wlp/usr/servers/controller/
 
 # Start the server
 CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log
