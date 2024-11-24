@@ -9,16 +9,16 @@ USER root
 WORKDIR /opt/ibm/wlp/bin
 
 COPY collective-create-include.xml /tmp
-COPY entrypoint.sh /scripts
+COPY entrypoint.sh /tmp
 
 # Install vim and create the server
 RUN apt-get update && apt install -y vim && apt-get clean && rm -rf /var/lib/apt/lists/* && \
     ./server create controller && \
     #./collective create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=$HOSTNAME && \
     cp -r /tmp/collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/ && \
-    chown -R 1001:0 /scripts && \
-    chmod -R g+rw /scripts && \
-    chmod -R u+rwx /scripts && \
+    chown -R 1001:0 /tmp/entrypoint.sh && \
+    chmod -R g+rw /entrypoint.sh&& \
+    chmod -R u+rwx /entrypoint.sh && \
     chmod -R g+rw /config && \
     chown -R 1001:0 /logs && \
     chmod -R g+rw /logs && \
