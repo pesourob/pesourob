@@ -17,6 +17,7 @@ RUN apt-get update && apt install -y vim && apt-get clean && rm -rf /var/lib/apt
     chmod -R g+rw /logs && \
     chown -R 1001:0 /opt/ibm/wlp/usr && \
     chmod -R g+rw /opt/ibm/wlp/usr && \
+    chmod -R u+rw /opt/ibm/wlp/usr && \
     chown -R 1001:0 /opt/ibm/wlp/output && \
     chmod -R g+rw /opt/ibm/wlp/output && \
     chown -R 1001:0 /etc/wlp && \
