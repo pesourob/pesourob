@@ -1,1 +1,25 @@
+<server description="controller">
 
+    <!-- Enable features -->
+    <featureManager>
+      <feature>adminCenter-1.0</feature>
+      <feature>websocket-1.1</feature>
+      <feature>restConnector-1.0</feature>
+      <feature>localConnector-1.0</feature>
+    </featureManager>
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+                  httpPort="9080"
+                  httpsPort="9443" />
+ 
+    <remoteFileAccess>
+    <writeDir>${server.config.dir}</writeDir>
+    </remoteFileAccess>
+
+
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+</server>
