@@ -8,7 +8,7 @@ USER root
 # Set the working directory
 WORKDIR /opt/ibm/wlp/bin
 
-COPY COPY collective-create-include.xml /tmp
+COPY collective-create-include.xml /tmp
 
 # Install vim and create the server
 RUN apt-get update && apt install -y vim && apt-get clean && rm -rf /var/lib/apt/lists/* && \
@@ -27,7 +27,6 @@ RUN apt-get update && apt install -y vim && apt-get clean && rm -rf /var/lib/apt
     chmod -R g+rw /etc/wlp
     
 COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
-COPY collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/
 
 # Start the server
 CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log && collective create controller --keystorePassword=password123 --hostName=$HOSTNAME && sed -i "s/<variable name=\"defaultHostName\" value=\"[^\"]*\" \/>/<variable name=\"defaultHostName\" value=\"$HOSTNAME\" \/>/" /opt/ibm/wlp/usr/servers/controller/collective-create-include.xml
