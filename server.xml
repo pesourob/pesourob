@@ -3,7 +3,6 @@
    <!-- Enable features -->
    <featureManager>
       <feature>adminCenter-1.0</feature>
-      <feature>collectiveController-1.0</feature>
    </featureManager>
     
     <!-- Define an Administrator and non-Administrator -->
@@ -16,7 +15,9 @@
    <administrator-role>
       <user>admin</user>
    </administrator-role>
-
+    
+ <include location="${server.config.dir}/collective-create-include.xml" />
+    
    <keyStore id="defaultKeyStore" password="password123" />
 
    <httpEndpoint id="defaultHttpEndpoint"
