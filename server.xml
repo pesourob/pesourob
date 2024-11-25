@@ -18,7 +18,7 @@
     
  <include location="${server.config.dir}/collective-create-include.xml" />
     
-   <keyStore id="defaultKeyStore" password="password123" />
+   <keyStore id="defaultKeyStore" password="{xor}Lz4sLCgwLTtubWw=" />
 
    <httpEndpoint id="defaultHttpEndpoint"
                  host="*"
