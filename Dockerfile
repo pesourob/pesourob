@@ -15,6 +15,7 @@ COPY entrypoint.sh /tmp
 RUN apt-get update && apt install -y vim && \
     mkdir -p /home/1000840000/.ssh && \        
     chmod -R 777 /home/1000840000/.ssh && \
+    usermod -d /home/1000840000 1000840000 && \
     ./server create controller && \
     #./collective create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=$HOSTNAME && \
     cp -r /tmp/collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/ && \
