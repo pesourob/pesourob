@@ -8,7 +8,7 @@ USER root
 # Set the working directory
 WORKDIR /opt/ibm/wlp/bin
 
-COPY collective-create-include.xml /tmp
+#COPY collective-create-include.xml /tmp
 COPY entrypoint.sh /tmp
 
 # Install vim and create the server
