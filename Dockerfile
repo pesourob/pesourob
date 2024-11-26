@@ -13,6 +13,7 @@ COPY entrypoint.sh /tmp
 
 # Install vim and create the server
 RUN apt-get update && apt install -y vim && \
+    ./installUtility install controller && \
     mkdir -p /.ssh && \
     touch /.ssh/authorized_keys && \
     chmod -R o+rwx /.ssh/authorized_keys && \
