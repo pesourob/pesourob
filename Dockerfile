@@ -17,7 +17,7 @@ RUN apt-get update && apt install -y vim && \
     touch /.ssh/authorized_keys && \
     chmod -R o+rwx /.ssh/authorized_keys && \
     ./server create controller && \
-    cp -r /tmp/collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/ && \
+    #cp -r /tmp/collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/ && \
     chmod +x /tmp/entrypoint.sh && \
     chmod -R o+rw /opt/ibm/wlp/usr/servers/controller/ && \
     chown -R 1001:0 /tmp/entrypoint.sh && \
