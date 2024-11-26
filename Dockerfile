@@ -13,7 +13,7 @@ COPY entrypoint.sh /tmp
 
 # Install vim and create the server
 RUN apt-get update && apt install -y vim && \
-    useradd -m -s 1000840000 && \
+    useradd -m -s /bin/bash 1000840000 && \
     ./server create controller && \
     #./collective create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=$HOSTNAME && \
     cp -r /tmp/collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/ && \
