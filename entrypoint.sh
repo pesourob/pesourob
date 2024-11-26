@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Upravit soubor pomocí sed
-sed -i "s/<variable name=\"defaultHostName\" value=\"[^\"]*\" \/>/<variable name=\"defaultHostName\" value=\"$HOSTNAME\" \/>/" /opt/ibm/wlp/usr/servers/controller/collective-create-include.xml
+#sed -i "s/<variable name=\"defaultHostName\" value=\"[^\"]*\" \/>/<variable name=\"defaultHostName\" value=\"$HOSTNAME\" \/>/" /opt/ibm/wlp/usr/servers/controller/collective-create-include.xml
 
 # Spustit kolektivní příkaz
 collective create controller --keystorePassword=password123 --hostName=$HOSTNAME
