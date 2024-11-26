@@ -13,7 +13,7 @@ COPY entrypoint.sh /tmp
 
 # Install vim and create the server
 RUN apt-get update && apt install -y vim && \
-    mkdir -p /home/1000840000/.ssh && \         #Next 2 rows are a correction if you do not have appropriate rights to the OCP cluster to change the SCC
+    mkdir -p /home/1000840000/.ssh && \        
     chmod -R 777 /home/1000840000/.ssh && \
     ./server create controller && \
     #./collective create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=$HOSTNAME && \
