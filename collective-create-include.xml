@@ -21,11 +21,11 @@
 
     <!-- inbound (HTTPS) keystore -->
     <keyStore id="defaultKeyStore" password="{xor}Lz4sLCgwLTtubWw="
-              location="${server.config.dir}/resources/security/key.p12" />
+              location="${server.config.dir/resources/security/key.p12" />
 
     <!-- inbound (HTTPS) truststore -->
     <keyStore id="defaultTrustStore" password="{xor}Lz4sLCgwLTtubWw="
-              location="${server.config.dir}/resources/security/trust.p12" />
+              location="/opt/ibm/wlp/usr/servers/controller/resources/security/trust.p12" />
 
     <!-- server identity keystore -->
     <keyStore id="serverIdentity" password="{xor}Lz4sLCgwLTtubWw="
