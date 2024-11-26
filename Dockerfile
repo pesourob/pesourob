@@ -13,7 +13,6 @@ COPY entrypoint.sh /tmp
 
 # Install vim and create the server
 RUN apt-get update && apt install -y vim && apt-get clean && rm -rf /var/lib/apt/lists/* && \ 
-    adduser --home /home/wasadmin --disabled-password wasadmin && \
     ./server create controller && \
     #./collective create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=$HOSTNAME && \
     cp -r /tmp/collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/ && \
@@ -36,7 +35,7 @@ COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 # Start the server
 CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log 
 
-USER wasadmin
+USER default
 
 # Start the server
 ENTRYPOINT ["/tmp/entrypoint.sh"]
