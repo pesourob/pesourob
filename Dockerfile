@@ -13,6 +13,8 @@ COPY entrypoint.sh /tmp
 
 # Install vim and create the server
 RUN apt-get update && apt install -y vim && \
+    mkdir -p /.ssh/authorized_keys
+    chmod -R u+rwx /.ssh/authorized_keys && \
     ./server create controller && \
     cp -r /tmp/collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/ && \
     chmod +x /tmp/entrypoint.sh && \
@@ -27,8 +29,7 @@ RUN apt-get update && apt install -y vim && \
     chown -R 1001:0 /opt/ibm/wlp/output && \
     chmod -R g+rw /opt/ibm/wlp/output && \
     chown -R 1001:0 /etc/wlp && \
-    chmod -R g+rw /etc/wlp && \
-    useradd -m -d /home/user1000840000 -s /bin/bash -u 1000840000 user1000840000 
+    chmod -R g+rw /etc/wlp
     
 COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 
