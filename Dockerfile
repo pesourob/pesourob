@@ -1,4 +1,4 @@
-## Use the base image WebSphere Liberty
+# Use the base image WebSphere Liberty
 FROM websphere-liberty:latest
 
 MAINTAINER robert.pesout@tietoevry.com
