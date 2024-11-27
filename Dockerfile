@@ -47,8 +47,3 @@ ENTRYPOINT ["/tmp/entrypoint.sh"]
 
 # Expose necessary ports
 EXPOSE 9080 9443
-
-
-# Expose necessary ports
-EXPOSE 9080 9443
-
