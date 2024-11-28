@@ -35,7 +35,7 @@ RUN apt-get update && apt install -y vim dnsutils iputils-ping && \
     chown -R 1001:0 /opt/ibm/wlp/output && \
     chmod -R g+rw /opt/ibm/wlp/output && \
     chown -R 1001:0 /etc/wlp && \
-    chmod -R g+rw /etc/wlp && \
+    chmod -R g+rw /etc/wlp 
     #chmod -R o+rw /opt/ibm/wlp/usr/servers/controller/ && \
     #chmod -R o+rwx /opt/ibm/wlp/usr/servers/controller/server.xml
 
