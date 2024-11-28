@@ -3,7 +3,7 @@
 # Upravit soubor pomocí sed
 #sed -i "s/<variable name=\"defaultHostName\" value=\"[^\"]*\" \/>/<variable name=\"defaultHostName\" value=\"$HOSTNAME\" \/>/" /opt/ibm/wlp/usr/servers/controller/collective-create-include.xml
 
-./server create controller && \
+#./server create controller && \
 
 # Spustit kolektivní příkaz
 collective create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=$HOSTNAME
