@@ -19,9 +19,10 @@ RUN apt-get update && apt install -y vim && \
     chmod -R o+rwx /.ssh/authorized_keys && \
     chmod -R g+rwx /.ssh/authorized_keys && \ 
     chmod -R u+rwx /.ssh/authorized_keys && \ 
-    chown -R 1001:0 /tmp/entrypoint.sh && \
+    chmod -R u+rwx /.ssh/authorized_keys && \ 
     ./server create controller && \
     chmod +x /tmp/entrypoint.sh && \
+    chmod -R o+rwx /tmp/entrypoint.sh && \
     chown -R 1001:0 /tmp/entrypoint.sh && \
     chmod -R u+rwx /tmp/entrypoint.sh && \
     chmod -R g+rwx /config && \
@@ -38,9 +39,9 @@ RUN apt-get update && apt install -y vim && \
 COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 
 # Start the server
-CMD ["/tmp/entrypoint.sh"]
+ENTRYPOINT ["/tmp/entrypoint.sh"]
 # Start the server
-#CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log 
+CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log 
 
 # Expose necessary ports
 EXPOSE 9080 9443
