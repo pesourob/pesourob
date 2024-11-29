@@ -21,9 +21,7 @@ RUN apt-get update && apt install -y && \
     chmod -R u+rwx /.ssh/authorized_keys && \ 
     chown -R 1001:0 /tmp/entrypoint.sh && \
     ./server create controller && \
-    #cp -r /tmp/collective-create-include.xml /opt/ibm/wlp/usr/servers/controller/ && \
     chmod +x /tmp/entrypoint.sh && \
-    #chmod -R o+rw /opt/ibm/wlp/usr/servers/controller/ && \
     chown -R 1001:0 /tmp/entrypoint.sh && \
     chmod -R u+rwx /tmp/entrypoint.sh && \
     chmod -R g+rw /config && \
@@ -36,9 +34,6 @@ RUN apt-get update && apt install -y && \
     chmod -R g+rw /opt/ibm/wlp/output && \
     chown -R 1001:0 /etc/wlp && \
     chmod -R g+rw /etc/wlp 
-    #chmod -R o+rw /opt/ibm/wlp/usr/servers/controller/ && \
-    #chmod -R o+rwx /opt/ibm/wlp/usr/servers/controller/server.xml
-
     
 COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 
