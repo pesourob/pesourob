@@ -8,9 +8,3 @@ chown -R 1001:0 /opt/ibm/wlp/usr
 chmod -R o+rwx /opt/ibm/wlp/usr/servers/controller/
 
 #sed -i 's/<quickStartSecurity userName="" userPassword="" />/<quickStartSecurity userName="admin" userPassword="password123"/>/' /opt/ibm/wlp/usr/servers/controller/collective-create-include.xml
-
-# Start the server
-/opt/ibm/wlp/bin/server start controller
-
-# Udržet kontejner běžící
-tail -f /logs/messages.log
