@@ -2,9 +2,7 @@
 
 # Spustit kolektivní příkaz
 
-create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=websphere-liberty-controller
+/opt/ibm/wlp/bin/create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=websphere-liberty-controller
 
-chown -R 1001:0 /opt/ibm/wlp/usr
-chmod -R o+rwx /opt/ibm/wlp/usr/servers/controller/
-
+#Pouzitelne v Docker
 #sed -i 's/<quickStartSecurity userName="" userPassword="" />/<quickStartSecurity userName="admin" userPassword="password123"/>/' /opt/ibm/wlp/usr/servers/controller/collective-create-include.xml
