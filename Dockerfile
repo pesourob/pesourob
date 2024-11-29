@@ -38,8 +38,7 @@ RUN apt-get update && apt install -y vim && \
 COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 
 # Start the server
-CMD /tmp/entrypoint.sh
-
+CMD ["/tmp/entrypoint.sh"]
 # Start the server
 #CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log 
 
