@@ -11,3 +11,4 @@ echo "Running collective command"
 
 echo "Stopping server"
 /opt/ibm/wlp/bin/server stop controller && tail -f /logs/messages.log
+/opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log 
