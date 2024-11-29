@@ -1,11 +1,14 @@
 <server description="controller">
-    
+
    <!-- Enable features -->
    <featureManager>
       <feature>adminCenter-1.0</feature>
-      <feature>collectiveController-1.0</feature>
+      <feature>adminCenter-1.0</feature>
+      <feature>websocket-1.1</feature>
+      <feature>restConnector-1.0</feature>
+      <feature>localConnector-1.0</feature>
    </featureManager>
-    
+
     <!-- Define an Administrator and non-Administrator -->
    <basicRegistry id="basic">
       <user name="admin" password="password123" />
@@ -16,14 +19,14 @@
    <administrator-role>
       <user>admin</user>
    </administrator-role>
-    
- <include location="${server.config.dir}/collective-create-include.xml" />
-    
-       <!--<keyStore id="defaultKeyStore" password="{xor}Lz4sLCgwLTtubWw="
-              location="${server.config.dir}/resources/security/key.p12" /> -->
 
-    <keyStore id="defaultKeyStore" location="/opt/ibm/wlp/usr/servers/controller/resources/security/controller.p12" type="PKCS12" password="password123"/>
-                <ssl id="defaultSSLConfig" keyStoreRef="defaultKeyStore"/>
+ <include location="${server.config.dir}/collective-create-include.xml" />
+
+       <keyStore id="defaultKeyStore" password="{xor}Lz4sLCgwLTtubWw="
+              location="${server.config.dir}/resources/security/key.p12" />
+
+               <!--<keyStore id="defaultKeyStore" location="/opt/ibm/wlp/usr/servers/controller/resources/security/controller.p12" type="PKCS12" password="password123"/>
+               <ssl id="defaultSSLConfig" keyStoreRef="defaultKeyStore"/> -->
 
 
    <httpEndpoint id="defaultHttpEndpoint"
@@ -32,3 +35,4 @@
                  httpsPort="9443" />
 
 </server>
+
