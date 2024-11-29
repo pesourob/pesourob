@@ -12,7 +12,7 @@ WORKDIR /opt/ibm/wlp/bin
 COPY entrypoint.sh /tmp
 
 # Install vim and create the server
-RUN apt-get update && apt install -y && \
+RUN apt-get update && apt install -y vim && \
     ./installUtility install collectivecontroller-1.0 --acceptLicense && \
     mkdir -p /.ssh && \
     touch /.ssh/authorized_keys && \
