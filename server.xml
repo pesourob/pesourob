@@ -3,6 +3,7 @@
    <!-- Enable features -->
    <featureManager>
       <feature>adminCenter-1.0</feature>
+      <feature>collectiveMember-1.0</feature>
    </featureManager>
     
     <!-- Define an Administrator and non-Administrator -->
