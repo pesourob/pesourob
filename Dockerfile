@@ -38,10 +38,10 @@ RUN apt-get update && apt install -y vim && \
 COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 
 # Start the server
-CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log 
+ENTRYPOINT ["/tmp/entrypoint.sh"]
 
 # Start the server
-ENTRYPOINT ["/tmp/entrypoint.sh"]
+CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log 
 
 # Expose necessary ports
 EXPOSE 9080 9443
