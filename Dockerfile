@@ -5,43 +5,33 @@ MAINTAINER robert.pesout@tietoevry.com
 
 USER root
 
-# Set the working directory
+# Set working directory
 WORKDIR /opt/ibm/wlp/bin
 
-#COPY collective-create-include.xml /tmp
+# Copy necessary files
 COPY entrypoint.sh /tmp
+COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/member1/
 
-# Install vim and create the server
-RUN apt-get update && apt install -y vim && \
-    ./installUtility install collectivecontroller-1.0 --acceptLicense && \
-    mkdir -p /.ssh && \
-    touch /.ssh/authorized_keys && \
-    chmod -R o+rwx /.ssh/authorized_keys && \
-    chmod -R g+rwx /.ssh/authorized_keys && \ 
-    chmod -R u+rwx /.ssh/authorized_keys && \ 
-    chmod -R u+rwx /.ssh/authorized_keys && \ 
-    ./server create controller && \
+# Install dependencies and configure server
+RUN apt-get update && apt-get install -y vim && \
+    mkdir -p /.ssh && touch /.ssh/authorized_keys && \
+    chmod 700 /.ssh && chmod 770 /.ssh/authorized_keys && \
+    ./server create member1 && \
     chmod +x /tmp/entrypoint.sh && \
-    chmod -R o+rwx /tmp/entrypoint.sh && \
-    chown -R 1001:0 /tmp/entrypoint.sh && \
-    chmod -R u+rwx /tmp/entrypoint.sh && \
-    chmod -R g+rwx /config && \
-    chown -R 1001:0 /logs && \
-    chmod -R g+rw /logs && \
-    chown -R 1001:0 /opt/ibm/wlp/usr && \
-    chmod -R g+rw /opt/ibm/wlp/usr && \
-    chmod -R u+rw /opt/ibm/wlp/usr && \
-    chown -R 1001:0 /opt/ibm/wlp/output && \
-    chmod -R g+rw /opt/ibm/wlp/output && \
-    chown -R 1001:0 /etc/wlp && \
-    chmod -R g+rw /etc/wlp 
-    
-COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
+    chown -R 1001:0 /tmp/entrypoint.sh /opt/ibm/wlp/usr /logs /opt/ibm/wlp/output /etc/wlp && \
+    chmod -R g+rw /opt/ibm/wlp/usr /logs /opt/ibm/wlp/output /etc/wlp
 
-# Start the server
-ENTRYPOINT ["/tmp/entrypoint.sh"]
-# Start the server
-CMD /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log 
+COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/member1/
+
+# Switch to non-root user
+USER 1001
 
 # Expose necessary ports
 EXPOSE 9080 9443
+
+# Set entrypoint
+ENTRYPOINT ["/tmp/entrypoint.sh"]
+
+# Start the server
+CMD ["/opt/ibm/wlp/bin/server", "start", "member1"]
+
