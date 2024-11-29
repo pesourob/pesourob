@@ -24,7 +24,7 @@ RUN apt-get update && apt install -y vim && \
     chmod +x /tmp/entrypoint.sh && \
     chown -R 1001:0 /tmp/entrypoint.sh && \
     chmod -R u+rwx /tmp/entrypoint.sh && \
-    chmod -R g+rw /config && \
+    chmod -R g+rwx /config && \
     chown -R 1001:0 /logs && \
     chmod -R g+rw /logs && \
     chown -R 1001:0 /opt/ibm/wlp/usr && \
