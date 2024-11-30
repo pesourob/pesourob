@@ -5,7 +5,7 @@ echo "----------Starting server----------"
 
 if [[ ! -e /opt/ibm/wlp/usr/servers/controller/resources || ! -e /opt/ibm/wlp/usr/servers/controller/collective-create-include.xml ]]; then
     echo "----------Running collective command----------"
-    /opt/ibm/wlp/bin/collective create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=websphere-liberty-controller
+#    /opt/ibm/wlp/bin/collective create controller --keystorePassword=password123 --createConfigFile=/opt/ibm/wlp/usr/servers/controller/ --hostName=websphere-liberty-controller
 else
     echo "----------Files exist, skipping collective create command----------"
 fi
