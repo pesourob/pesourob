@@ -9,6 +9,10 @@
       <feature>localConnector-1.0</feature>
    </featureManager>
 
+   <remoteFileAccess> 
+      <writeDir>${server.config.dir}</writeDir> 
+   </remoteFileAccess> 
+
     <!-- Define an Administrator and non-Administrator -->
    <basicRegistry id="basic">
       <user name="admin" password="password123" />
