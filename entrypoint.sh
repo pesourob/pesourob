@@ -16,6 +16,7 @@ echo "----------Stopping server----------"
 #Symbolic link
 echo "----------Creating symbolic link----------"
 ln -s /opt/ibm/wlp/usr/servers/controller /controller
+ln -s /data /opt/ibm/wlp/usr/servers/controller
 
 echo "----------Starting server----------"
 /opt/ibm/wlp/bin/server start controller && tail -f /logs/messages.log
