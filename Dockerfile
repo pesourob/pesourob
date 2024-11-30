@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y vim && \
     chown -R 1001:0 /config /logs /opt/ibm/wlp/usr /opt/ibm/wlp/output /etc/wlp && \
     apt-get clean && rm -rf /var/lib/apt/lists/* 
 
-COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
+COPY --chown=1001:0 server.xml /config
 
 # Nastavení entrypoint skriptu
 ENTRYPOINT ["/tmp/entrypoint.sh"]
