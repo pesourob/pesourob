@@ -16,17 +16,17 @@ COPY entrypoint.sh /tmp/
 # Instalace balíčků a příprava prostředí
 RUN apt-get update && apt-get install -y vim && \
     rm -rvf /config && \
-    ln -s /opt/ibm/ /config && ln -s /opt/ibm/wlp/bin/ && /opt/ibm/wlp/usr/servers/controller/ && \
+    ln -s /opt/ibm/ /config && \
     chmod -R g+rw /config /logs /opt/ibm/wlp/usr /opt/ibm/wlp/output /etc/wlp && \
     chown -R 1001:0 /config /logs /opt/ibm/wlp/usr /opt/ibm/wlp/output /etc/wlp && \
-    /config/opt/ibm/wlp/bin/installUtility install collectivecontroller-1.0 --acceptLicense && \
+    /opt/ibm/wlp/bin/installUtility install collectivecontroller-1.0 --acceptLicense && \
     mkdir -p /.ssh && touch /.ssh/authorized_keys && \
     chmod 660 /.ssh/authorized_keys && \
     chown -R 1001:0 /.ssh && \
-    /config/opt/ibm/wlp/bin/server create controller && \
+    /opt/ibm/wlp/bin/server create controller && \
     chmod +x /tmp/entrypoint.sh && \
     chown -R 1001:0 /tmp/entrypoint.sh && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* 
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY --chown=1001:0 server.xml /config
 
