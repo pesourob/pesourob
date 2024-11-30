@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install -y vim && \
     chmod -R g+rw /config /logs /opt/ibm/wlp/usr /opt/ibm/wlp/output /etc/wlp && \
     chown -R 1001:0 /logs /opt/ibm/wlp/usr /opt/ibm/wlp/output /etc/wlp && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \ 
-    rm -rvf /config
+    rm -rvf /config && \
+    ln -s /opt/ibm/wlp/usr/servers/controller /config
 
 COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 
