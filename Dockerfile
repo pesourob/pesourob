@@ -28,4 +28,4 @@ COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
 ENTRYPOINT ["/tmp/entrypoint.sh"]
 
 # Otevření potřebných portů
-EXPOSE 9080 9443 22 
+EXPOSE 9080 9443 22 2222
