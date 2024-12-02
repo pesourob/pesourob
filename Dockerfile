@@ -8,7 +8,7 @@ WORKDIR /opt/ibm/wlp/bin
 
 COPY entrypoint.sh /tmp/
 
-RUN apt-get update && apt-get install -y vim && apt-get download -y openssh-server openssh-client && apt-get install -y iputils-ping telnet net tools && \
+RUN apt-get update && apt-get install -y vim && apt-get install -y openssh-server openssh-client && apt-get install -y iputils-ping telnet net tools && \
     ./installUtility install collectivecontroller-1.0 --acceptLicense && \
     mkdir -p /.ssh && touch /.ssh/authorized_keys && mkdir -p /var/run/sshd && \
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
