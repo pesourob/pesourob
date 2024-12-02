@@ -8,7 +8,7 @@ WORKDIR /opt/ibm/wlp/bin
 
 COPY entrypoint.sh /tmp/
 
-RUN apt-get update && apt-get install -y vim && install -y openssh-server && \
+RUN apt-get update && apt-get install -y vim && apt-get install -y openssh-server && \
     ./installUtility install collectivecontroller-1.0 --acceptLicense && \
     mkdir -p /.ssh && touch /.ssh/authorized_keys && RUN mkdir /var/run/sshd && \
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
