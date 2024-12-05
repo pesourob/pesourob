@@ -2,15 +2,13 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   annotations:
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"websphere-liberty-controller:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"websphere-liberty-controller\")].image"}]'
     openshift.io/generated-by: OpenShiftNewApp
-  creationTimestamp: "2024-11-27T10:22:51Z"
   labels:
     app: websphere-liberty-controller
     app.kubernetes.io/component: websphere-liberty-controller
     app.kubernetes.io/instance: websphere-liberty-controller
   name: websphere-liberty-controller
-  namespace: pesourob-was-liberty
+  namespace: pesourob-liberty
 spec:
   serviceName: "websphere-liberty-controller"
   replicas: 1
@@ -25,22 +23,25 @@ spec:
         app: websphere-liberty-controller
     spec:
       containers:
-      - image: quay.io/pesourob/pesourob/websphere-liberty-training@sha256:46295d662105f08def20e916c5d97d396766851dd37dede19867ea62731702a8
-        imagePullPolicy: IfNotPresent
-        name: websphere-liberty-controller
-        ports:
-        - containerPort: 9080
-          protocol: TCP
-        - containerPort: 9443
-          protocol: TCP
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
+        - image: quay.io/pesourob/pesourob/websphere-liberty-training:latest
+          imagePullPolicy: Always
+          name: websphere-liberty-controller
+          ports:
+            - containerPort: 9080
+              protocol: TCP
+            - containerPort: 9443
+              protocol: TCP
+            - containerPort: 22
+              protocol: TCP
+          volumeMounts:
+            - name: websphere-liberty-storage
+              mountPath: /mnt # Symbolický odkaz na /opt/ibm/wlp/usr/servers/controller - link do not work you should mount pvc under /mnt and copy all from /opt/*  to /mnt and after this action you will be able mount all data on /opt as new pvc under /opt
   volumeClaimTemplates:
   - metadata:
-      name: example-storage
+      name: websphere-liberty-storage
     spec:
       accessModes: ["ReadWriteOnce"]
       resources:
         requests:
-          storage: 1Gi
+          storage: 1Gi  # PVC velikost 
+
