@@ -13,12 +13,14 @@
       <writeDir>${server.config.dir}</writeDir> 
    </remoteFileAccess> 
 
+    <!--
     <!-- Define an Administrator and non-Administrator -->
    <basicRegistry id="basic">
       <user name="admin" password="password123" />
       <user name="nonadmin" password="nonadminpwd" />
    </basicRegistry>
-
+-->
+   
    <!-- Assign 'admin' to Administrator -->
    <administrator-role>
       <user>admin</user>
@@ -26,7 +28,7 @@
 
  <include location="${server.config.dir}/collective-create-include.xml" />
 
-       <keyStore id="defaultKeyStore" password="{xor}Lz4sLCgwLTtubWw="
+       <keyStore id="defaultKeyStore" password="password123"
               location="${server.config.dir}/resources/security/key.p12" />
 
                <!--<keyStore id="defaultKeyStore" location="/opt/ibm/wlp/usr/servers/controller/resources/security/controller.p12" type="PKCS12" password="password123"/>
