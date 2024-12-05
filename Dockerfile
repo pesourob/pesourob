@@ -20,9 +20,11 @@ RUN apt-get update && apt-get install -y vim && apt-get install -y openssh-serve
     ln -s /opt/ibm/wlp/usr/servers/controller /config && \
     chmod -R g+rw /logs /opt/ibm/wlp/usr /opt/ibm/wlp/output /etc/wlp && \
     chown -R 1001:0 /logs /opt/ibm/wlp/usr /opt/ibm/wlp/output /etc/wlp && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* 
+    apt-get clean && rm -rf /var/lib/apt/lists/* && usermod --shell /bin/bash default && usermod -aG sudo default
 
 COPY --chown=1001:0 server.xml /opt/ibm/wlp/usr/servers/controller/
+
+USER default
 
 # Nastavení entrypoint skriptu
 ENTRYPOINT ["/tmp/entrypoint.sh"]
